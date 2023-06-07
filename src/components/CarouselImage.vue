@@ -3,7 +3,7 @@
       <Slide v-for="(slide, index) in slides" :key="index">
         <div class="carousel__item">
           <img :src="slide.url" alt="">
-          <p>{{ slide.description }}</p>
+          <strong>{{ slide.description }}</strong>
         </div>
       </Slide>
     </Carousel>
@@ -27,17 +27,17 @@ export default defineComponent({
         slides: [
         {
           url: 'https://i.pinimg.com/236x/97/80/e9/9780e92b04459068a3a784ba7e671b52.jpg',
-          description: 'Descripción del slide 1',
+          description: 'Suiza',
         },
         {
           url: 'https://i.pinimg.com/236x/78/5f/83/785f833e70b69aab847d079a019d6591.jpg',
-          description: 'Descripción del slide 2',
+          description: 'Grecia',
         },
         {
           url: 'https://i.pinimg.com/236x/f4/a3/a4/f4a3a4cd1963ebc7b3d70a4fa88100d3.jpg',
-          description: 'Descripción del slide 3',
+          description: 'Paris',
         },
-        // Agrega más objetos para cada slide según sea necesario
+        
       ],
     };
   },
@@ -47,7 +47,7 @@ export default defineComponent({
 <style scoped>
 
 .carousel__image {
-  margin: 10px; /* Ajusta este valor según tus necesidades */
+  margin: 10px; 
 }
 .carousel__slide {
   padding: 50px;
