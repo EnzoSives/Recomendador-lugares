@@ -25,6 +25,7 @@ export default {
   name: 'NovedadesVuelos',
   data() {
     return {
+      lugares: '',
       novedades: [
         {
           titulo: "Temporada de sky",
@@ -67,17 +68,19 @@ export default {
          'X-RapidAPI-Key': 'f491b2bf01mshf41208ff8254c6bp19708ejsn302625505859',
          'X-RapidAPI-Host': 'flight-info-api.p.rapidapi.com'
        }
-     };
+     };*/
+
+     mounted() {
  
-     fetch('https://flight-info-api.p.rapidapi.com/schedules?version=v1', options)
-       .then(response => response.json())
-       .then(data => {
-         this.flights = data;
+     fetch('./public/places.json')
+       .then(res => {
+         this.lugares = res;
+         console.log(this.lugares)
        })
        .catch(error => {
          console.error(error);
        });
-   }*/
+   }
 };
 </script>
 
