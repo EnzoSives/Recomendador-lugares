@@ -1,9 +1,9 @@
 <template>
     <Carousel :itemsToShow="5.50" :wrapAround="true" :transition="500">
-      <Slide v-for="(slide, index) in slides" :key="index">
+      <Slide v-for="(place, index) in places" :key="index">
         <div class="carousel__item">
-          <img :src="slide.url" alt="">
-          <strong>{{ slide.description }}</strong>
+          
+          <strong>{{ place.lugar }}</strong>
         </div>
       </Slide>
     </Carousel>
@@ -24,7 +24,8 @@ export default defineComponent({
   },
   data() {
     return {
-        slides: [
+      places: [],
+        /*slides: [
         {
           url: 'https://i.pinimg.com/236x/97/80/e9/9780e92b04459068a3a784ba7e671b52.jpg',
           description: 'Suiza',
@@ -38,9 +39,25 @@ export default defineComponent({
           description: 'Paris',
         },
         
-      ],
+      ],*/
     };
   },
+  mounted(){
+    this.loadPlaces()
+  },
+  methods:{
+    loadPlaces() {
+      fetch('./places.json')
+        .then(response => response.json())
+        .then(data => {
+          this.places = data.places
+          
+        })
+        .catch(error => {
+          console.error('Error al cargar el archivo JSON:', error)
+        })
+    }
+  }
 })
 </script>
 
