@@ -1,18 +1,22 @@
 <template>
     <Carousel :itemsToShow="5.50" :wrapAround="true" :transition="500">
-      <Slide v-for="(place, index) in places" :key="index">
+      <Slide v-for="(promo, index) in promos" :key="index">
         <div class="carousel__item">
-          
-          <strong>{{ place.lugar }}</strong>
+          <img :src="promo.imagen" alt="">
+          <strong>{{ promo.descripcion }}</strong>
         </div>
       </Slide>
+      <template #addons>
+      <Navigation />
+      <Pagination />
+    </template>
     </Carousel>
   </template>
   
 
 <script>
 import { defineComponent } from 'vue'
-import { Carousel, Slide } from 'vue3-carousel'
+import { Carousel, Slide, Pagination,Navigation } from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
 
@@ -21,10 +25,12 @@ export default defineComponent({
   components: {
     Carousel,
     Slide,
+    Pagination,
+    Navigation,
   },
   data() {
     return {
-      places: [],
+      promos: [],
         /*slides: [
         {
           url: 'https://i.pinimg.com/236x/97/80/e9/9780e92b04459068a3a784ba7e671b52.jpg',
@@ -43,14 +49,14 @@ export default defineComponent({
     };
   },
   mounted(){
-    this.loadPlaces()
+    this.loadPromos()
   },
   methods:{
-    loadPlaces() {
-      fetch('./places.json')
+    loadPromos() {
+      fetch('/promotion.json')
         .then(response => response.json())
         .then(data => {
-          this.places = data.places
+          this.promos = data.promotions
           
         })
         .catch(error => {
@@ -63,11 +69,12 @@ export default defineComponent({
 
 <style scoped>
 
-.carousel__image {
-  margin: 10px; 
+img {
+  width: 350px; 
+  height: 500px;
 }
 .carousel__slide {
-  padding: 50px;
+  padding: 100px;
 }
 
 .carousel__viewport {
@@ -83,27 +90,29 @@ export default defineComponent({
 }
 
 .carousel__slide {
-  opacity: 0.9;
-  transform: rotateY(-20deg) scale(0.9);
+  opacity: 0.5;
+  transform: rotateY(-10deg) scale(0.6);;
 }
 
 .carousel__slide--active ~ .carousel__slide {
-  transform: rotateY(20deg) scale(0.9);
+  opacity: 0.5;
+  transform: rotateY(-10deg) scale(0.6);;
 }
 
 .carousel__slide--prev {
-  opacity: 1;
-  transform: rotateY(-10deg) scale(0.95);
+  opacity: 0.5;
+  transform: rotateY(-10deg) scale(0.6);
 }
 
 .carousel__slide--next {
-  opacity: 1;
-  transform: rotateY(10deg) scale(0.95);
+  opacity: 0.5;
+  transform: rotateY(-10deg) scale(0.6);
 }
 
 .carousel__slide--active {
   opacity: 1;
   transform: rotateY(0) scale(1.1);
+  z-index: 1000;
 }
 </style>
 

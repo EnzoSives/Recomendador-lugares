@@ -2,9 +2,9 @@
     <div id="app">
      
       <background-image :image-url="backgroundImageUrl">
-        <comparar-vuelos/>
+        <buscador-lugares/>
       </background-image>
-      <titulo-pag title="Mejores lugares para vistar actualmente" />
+      <titulo-pag class="promos" title="Promociones" />
       <carousel-image/>
       <titulo-pag title="Ultimos vuelos" />
       <cards-vuelos />
@@ -19,22 +19,23 @@
   <script>
   
   import BackgroundImage from '@/components/BackgroundImage.vue';
-  import CompararVuelos from '@/components/CompararVuelos.vue';
+ 
   import TituloPag from '@/components/TituloPag.vue';
   import CardsVuelos from '@/components/CardsVuelos.vue';
   import NovedadesVuelos from '@/components/NovedadesVuelos.vue';
   import CarouselImage from '@/components/CarouselImage.vue';
+  import BuscadorLugares from '@/components/BuscadorLugares.vue';
   
   export default{
     name: 'HomePage',
     components: {
      
       BackgroundImage,
-      CompararVuelos,
       TituloPag,
       CardsVuelos,
       NovedadesVuelos,
-      CarouselImage
+      CarouselImage,
+      BuscadorLugares
       
     },
     data() {
@@ -47,6 +48,9 @@
   </script>
   
   <style>
-  
+  .promos{
+    text-align: center;
+    font-size: xx-large;
+  }
   </style>
   

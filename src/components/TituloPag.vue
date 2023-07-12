@@ -1,6 +1,6 @@
 <template>
-    <h1 class="page-title">{{ title }}</h1>
-  </template>
+  <h1 class="page-title">{{ title }}</h1>
+</template>
 
 <script>
 export default {
@@ -15,12 +15,19 @@ export default {
 </script>
 
   
-  <style>
-  .page-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-  </style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Bebas+Neue&family=Oswald:wght@500&display=swap');
+
+.page-title {
+  font-family: 'Agdasima', sans-serif;
+  background: -webkit-linear-gradient(rgb(0, 0, 0), red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: rgb(255, 87, 8);
+  font-size: 4rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+</style>
   

@@ -1,0 +1,34 @@
+{
+    "promotions": [
+      {
+        "id": 1,
+        "descripcion":"Promocion 1",
+        "imagen":"/Promociones/promo1.jpg"
+
+      },
+      {
+        "id": 2,
+        "descripcion":"Promocion 2",
+        "imagen":"/Promociones/promo2.jpg"
+
+      },
+      {
+        "id": 3,
+        "descripcion":"Promocion 3",
+        "imagen":"/Promociones/promo3.jpg"
+
+      },
+      {
+        "id": 4,
+        "descripcion":"Promocion 4",
+        "imagen":"/Promociones/promo4.jpg"
+
+      },
+      {
+        "id": 5,
+        "descripcion":"Promocion 5",
+        "imagen":"/Promociones/promo5.jpg"
+
+      }
+    ]
+    }
