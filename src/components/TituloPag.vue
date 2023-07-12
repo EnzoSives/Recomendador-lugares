@@ -28,6 +28,7 @@ export default {
   font-weight: bold;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  text-decoration:line-through;
 }
 </style>
   

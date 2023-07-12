@@ -6,8 +6,6 @@
       </background-image>
       <titulo-pag class="promos" title="Promociones" />
       <carousel-image/>
-      <titulo-pag title="Ultimos vuelos" />
-      <cards-vuelos />
       <br>
       <titulo-pag title="Noticias" />
       <novedades-vuelos />
@@ -19,9 +17,7 @@
   <script>
   
   import BackgroundImage from '@/components/BackgroundImage.vue';
- 
   import TituloPag from '@/components/TituloPag.vue';
-  import CardsVuelos from '@/components/CardsVuelos.vue';
   import NovedadesVuelos from '@/components/NovedadesVuelos.vue';
   import CarouselImage from '@/components/CarouselImage.vue';
   import BuscadorLugares from '@/components/BuscadorLugares.vue';
@@ -32,7 +28,6 @@
      
       BackgroundImage,
       TituloPag,
-      CardsVuelos,
       NovedadesVuelos,
       CarouselImage,
       BuscadorLugares

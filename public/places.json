@@ -3,35 +3,35 @@
     {
       "id": 1,
       "lugar": "Argentina",
-      "imagenes": ["/BuenosAires.jpg"],
+      "imagenes": ["/BuenosAires/BA1.jpg","/BuenosAires/BA2.jpg","/BuenosAires/BA3.jpg","/BuenosAires/BA4.jpg"],
       "descripcion": "Descripción de Argentina",
       "atracciones": ["Atracción 1", "Atracción 2", "Atracción 3"]
     },
     {
       "id": 2,
       "lugar": "E.E.U.U",
-      "imagenes": ["/EstadosUnidos.jpg"],
+      "imagenes": ["/EstadosUnidos/EU1.jpg","/EstadosUnidos/EU2.jpg","/EstadosUnidos/EU3.jpg","/EstadosUnidos/EU4.jpg"],
       "descripcion": "Descripción de Estados Unidos",
       "atracciones": ["Atracción 1", "Atracción 2", "Atracción 3"]
     },
     {
       "id": 3,
       "lugar": "Francia",
-      "imagenes": ["/Francia.jpg"],
+      "imagenes": ["/Francia/F1.jpg","/Francia/F2.jpg","/Francia/F3.jpg","/Francia/F4.jpg"],
       "descripcion": "Descripción de Francia",
       "atracciones": ["Atracción 1", "Atracción 2", "Atracción 3"]
     },
     {
       "id": 4,
       "lugar": "Inglaterra",
-      "imagenes": ["/Inglaterra.jpg"],
+      "imagenes": ["/Inglaterra/I1.jpg","/Inglaterra/I2.jpg","/Inglaterra/I3.jpg","/Inglaterra/I4.jpg"],
       "descripcion": "Descripción de Inglaterra",
       "atracciones": ["Atracción 1", "Atracción 2", "Atracción 3"]
     },
      {
       "id": 5,
       "lugar": "España",
-      "imagenes": ["/España.png"],
+      "imagenes": ["/España/E1.jpg","/España/E2.jpg","/España/E3.png","/España/E4.jpg"],
       "descripcion": "Descripción de España",
       "atracciones": ["Atracción 1", "Atracción 2", "Atracción 3"]
     }

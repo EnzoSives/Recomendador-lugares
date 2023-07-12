@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="input-container">
+    <div class="input-group mb-3">
       <input class="rounded-pill border-5 input-field" type="text" v-model="searchQuery"
         placeholder="Elegí el lugar que más te guste...">
-      <button type="button" class="btn btn-secondary input-button" @click="search">Buscar</button>
+      <button type="button" class="btn btn-outline-secondary input-button" @click="search">Buscar</button>
     </div>
     <div class="resultados" v-if="searchResults.length > 0">
       <ul>
@@ -19,9 +19,11 @@
         <div class="modal-container">
           <div class="modal-content">
             <h2>{{ selectedResult.lugar }}</h2>
+            <div class="images-container">
             <img v-for="imagen in selectedResult.imagenes" :src="imagen" :key="imagen" alt="Imagen del lugar">
-            <p>{{ selectedResult.descripcion }}</p>
+          </div>
             <ul>
+              <p>{{ selectedResult.descripcion }}</p>
               <li v-for="atraccion in selectedResult.atracciones" :key="atraccion">{{ atraccion }}</li>
             </ul>
             <button type="button" class="btn btn-danger" @click="closeModal">Cerrar</button>
@@ -78,7 +80,7 @@ export default {
 </script>
 
 <style scoped>
-.input-container {
+.input-group {
   position: relative;
   display: inline-block;
   font-size: xx-large;
@@ -86,7 +88,7 @@ export default {
 
 .input-field {
   padding: 5vw;
-  height: 5vh;
+  height: 3vh;
   width: 80vw;
   max-width: 800px;
   border: 2px solid #151515;
@@ -105,11 +107,11 @@ export default {
   right: 0;
   height: 100%;
   padding: 1.4vw;
-  border: none;
-  background-color: #ccc;
-  border-radius: 0 30px 30px 0;
+  border: 2px solid #151515;
+  border-radius: 20px 100px 100px 20px;
   color: #121212;
   cursor: pointer;
+  font-size: xx-large;
 }
 
 .modal-enter-active,
@@ -129,9 +131,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
   z-index: 9999;
 }
 
@@ -155,11 +155,15 @@ export default {
   overflow-y: auto;
   max-height: 100%;
   max-width: 90%;
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between; 
 }
-
 .modal-content img {
   width: 300px;
   height: 300px;
+  margin: 10px;
+  
 }
 
 
@@ -177,5 +181,13 @@ ul {
   align-items: baseline;
   list-style-type: none;
   color: #ccc ;
+}
+
+.images-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 </style>
