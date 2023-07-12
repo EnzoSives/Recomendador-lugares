@@ -1,35 +1,51 @@
 <template>
-  <div class="vuelos-cards">
+  <div class="lugares-cards">
     <div class="row">
-      <div v-for="vuelo in vuelos" :key="vuelo.vuelo_numero" class="col-md-3 mb-3">
+      <div v-for="(place, index) in places" :key="index" class="col-md-3 mb-3">
 
         <div class="card h-30 my-card">
-          <img :src="vuelo.imagen" class="card-img-top flight-image" alt="Flight image">
+          <img :src="place.imagenes" class="card-img-top flight-image" alt="Flight image">
           <div class="card-body">
-            <h5 class="card-title">{{ vuelo.vuelo_numero}}</h5>
+            <h5 class="card-title">{{ place.lugar }}</h5>
             <p class="card-text">
-              <strong>Partida:</strong> {{ vuelo.partida }}<br>
-              <strong>Destino:</strong> {{ vuelo.llegada }}<br>
-              <strong>Hora de partida:</strong> {{ vuelo.horario_partida }}<br>
-              <strong>Hora de llegada:</strong> {{ vuelo.horario_llegada }} <br>
-              <button type="button" class="btn btn-outline-success botonComprar">Comprar</button>
+              {{ place.descripcion }}
             </p>
-            
           </div>
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-success bntVerMas">Ver Mas</button>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'CardsVuelos',
-  data() {
-    return {
-      vuelos: [
+  name: 'CardsLugares',
+  data(){
+    return{
+      places: [],
+    }},
+  
+
+  mounted(){
+    this.loadPlaces()
+  },
+  methods:{
+    loadPlaces() {
+      fetch('/places.json')
+        .then(response => response.json())
+        .then(data => {
+          this.places = data.places
+          
+        })
+        .catch(error => {
+          console.error('Error al cargar el archivo JSON:', error)
+        })
+    }
+  }
+
+
+      /*vuelos: [
         {
           partida: "Buenos Aires",
           llegada: "Mendoza",
@@ -87,10 +103,9 @@ export default {
           horario_llegada: "2023-05-06 00:15:00HS",
           imagen: "https://i.pinimg.com/564x/ef/d4/ab/efd4ab1bbb56bf8840a354105e93b303.jpg"
         }
-      ]
+      ]*/
 
-    };
-  },
+ 
   /* mounted() {
      const options = {
        method: 'GET',
@@ -109,7 +124,7 @@ export default {
          console.error(error);
        });
    }*/
-};
+  };
 </script>
 
 <style scoped>
@@ -129,10 +144,6 @@ export default {
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-}
-.bntVerMas{
-  display: flex;
-  justify-content: center;
 }
 
 

@@ -3,35 +3,35 @@
     {
       "id": 1,
       "lugar": "Argentina",
-      "imagenes": ["https://ar.pinterest.com/pin/589479038738055161/"],
+      "imagenes": ["/BuenosAires.jpg"],
       "descripcion": "Descripción de Argentina",
       "atracciones": ["Atracción 1", "Atracción 2", "Atracción 3"]
     },
     {
       "id": 2,
-      "lugar": "Estados Unidos",
-      "imagenes": ["https://ar.pinterest.com/pin/973551644428323729/"],
+      "lugar": "E.E.U.U",
+      "imagenes": ["/EstadosUnidos.jpg"],
       "descripcion": "Descripción de Estados Unidos",
       "atracciones": ["Atracción 1", "Atracción 2", "Atracción 3"]
     },
     {
       "id": 3,
       "lugar": "Francia",
-      "imagenes": ["https://ar.pinterest.com/pin/43417583899898800/"],
+      "imagenes": ["/Francia.jpg"],
       "descripcion": "Descripción de Francia",
       "atracciones": ["Atracción 1", "Atracción 2", "Atracción 3"]
     },
     {
       "id": 4,
       "lugar": "Inglaterra",
-      "imagenes": ["https://ar.pinterest.com/pin/294985844361159456/"],
+      "imagenes": ["/Inglaterra.jpg"],
       "descripcion": "Descripción de Inglaterra",
       "atracciones": ["Atracción 1", "Atracción 2", "Atracción 3"]
     },
      {
       "id": 5,
       "lugar": "España",
-      "imagenes": ["https://ar.pinterest.com/pin/822821794435578237/"],
+      "imagenes": ["/España.png"],
       "descripcion": "Descripción de España",
       "atracciones": ["Atracción 1", "Atracción 2", "Atracción 3"]
     }

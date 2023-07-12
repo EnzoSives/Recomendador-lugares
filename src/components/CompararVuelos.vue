@@ -1,7 +1,6 @@
 <template>
   <div class="comparar-vuelos">
     <div class="vuelos-container">
-      <h1>Comparar vuelos</h1>
       <form>
         <div class="form-group">
           <label for="inputVuelo1">Partida</label>
@@ -13,13 +12,14 @@
           <input type="text" class="form-control" id="inputVuelo2" placeholder="Indique un lugar de partida"
             v-model="destino2">
         </div>
-        <button type="button" class="btn btn-light botonComparar" @click="getVuelosAccesibles">Comparar vuelos</button>
+        <button type="button" class="btn btn-secondary botonComparar" @click="getVuelosAccesibles">Comparar vuelos</button>
         <div class="vuelos-container2">
-          <h1>Vuelos recomendados</h1>
+          
           <div class="form-group">
             <ul class="lista-vuelos">
+              <h4>Vuelos recomendados</h4>
               <li v-for="vuelo in vuelos" :key="vuelo.id">
-                {{ vuelo.partida }} - {{ vuelo.destino }}: ${{ vuelo.precio }}
+               {{ vuelo.partida }} - {{ vuelo.destino }}: ${{ vuelo.precio }} - {{ vuelo.empresa }} <button type="button" class="btn btn-outline-success botonComprar">Comprar</button>
               </li>
             </ul>
           </div>
@@ -148,14 +148,18 @@ export default {
 </script>
 
 <style>
+
 .botonComparar {
   margin-top: 10px;
+}
+.botonComprar{
+  margin: 5px;
 }
 
 .comparar-vuelos {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .vuelos-container {
@@ -173,6 +177,8 @@ export default {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  align-items:flex-start;
 }
 
 .lista-vuelos li {
