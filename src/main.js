@@ -8,4 +8,5 @@ const app = createApp(App)
 
 app.use(router)
 
+app.config.globalProperties.apiURL = 'http://localhost:3000'; // Reemplaza con la URL de tu servidor Nest.js
 app.mount('#app')

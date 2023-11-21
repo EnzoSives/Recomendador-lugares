@@ -2,7 +2,7 @@
     <div id="app">
      
       <background-image :image-url="backgroundImageUrl">
-        <buscador-lugares/>
+        <buscador-lugares-2/>
       </background-image>
       <titulo-pag class="promos" title="Promociones" />
       <carousel-image/>
@@ -20,7 +20,8 @@
   import TituloPag from '@/components/TituloPag.vue';
   import NovedadesVuelos from '@/components/NovedadesVuelos.vue';
   import CarouselImage from '@/components/CarouselImage.vue';
-  import BuscadorLugares from '@/components/BuscadorLugares.vue';
+  // import BuscadorLugares from '@/components/BuscadorLugares.vue';
+  import BuscadorLugares2 from '@/components/BuscadorLugares2.vue';
   
   export default{
     name: 'HomePage',
@@ -30,7 +31,7 @@
       TituloPag,
       NovedadesVuelos,
       CarouselImage,
-      BuscadorLugares
+      BuscadorLugares2,
       
     },
     data() {

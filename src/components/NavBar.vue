@@ -15,10 +15,13 @@
           <a class="nav-link" href="#"><router-link to="/">Home</router-link></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><router-link to="/viajes">Lugares</router-link></a>
+          <a class="nav-link" href="#"><router-link to="/viajes">Viajes</router-link></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Ayuda</a>
+          <a class="nav-link" href="#"><router-link to="/ayuda">Lugares</router-link></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><router-link to="/login">Ayuda</router-link></a>
         </li>
       </ul>
     </div>
@@ -31,7 +34,11 @@
 export default {
   name: 'NavBar',
   props: {
-    msg: String
+    msg: String,
+    
+  }, 
+  methods:{
+
   }
 }
 </script>
@@ -47,11 +54,18 @@ export default {
 .logoavion{
   padding: 4px;
 }
-
-a {
-  color: #f55708;
-}
 .navbar-nav {
   justify-content: flex-end;
+}
+
+.navbar-brand{
+  color: #f55708; 
+}
+.navbar-nav a {
+  color: #f55708; 
+  text-decoration: none;
+}
+.navbar-nav a:hover {
+  color: white; 
 }
 </style>

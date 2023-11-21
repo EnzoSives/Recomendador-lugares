@@ -17,9 +17,9 @@
           
           <div class="form-group">
             <ul class="lista-vuelos">
-              <h4>Vuelos recomendados</h4>
-              <li v-for="vuelo in vuelos" :key="vuelo.id">
-               {{ vuelo.partida }} - {{ vuelo.destino }}: ${{ vuelo.precio }} - {{ vuelo.empresa }} <button type="button" class="btn btn-outline-success botonComprar">Comprar</button>
+              <h4 v-if="vuelos.length > 0">Vuelos recomendados</h4>
+              <li v-for="vuelo in vuelos" :key="vuelo.id" class="vuelo-item">
+               {{ vuelo.partida }} - {{ vuelo.destino }}: ${{ vuelo.precio }} - {{ vuelo.empresa }} <button type="button" class="btn botonComprar">Comprar</button>
               </li>
             </ul>
           </div>
@@ -131,15 +131,15 @@ export default {
   },
   methods: {
     getVuelosAccesibles() {
-      // Filtrar los vuelos según los destinos ingresados
+      
       const filtrovuelos = vuelos.filter((vuelos) => {
         return (vuelos.destino === this.destino1 || vuelos.destino === this.destino2);
       });
 
-      // Ordenar los vuelos por precio
+     
       const ordenarVuelos = filtrovuelos.sort((vueloA, vueloB) => vueloA.precio - vueloB.precio);
 
-      // Retornar los vuelos ordenados
+     
       this.vuelos = ordenarVuelos;
     }
 
@@ -154,24 +154,38 @@ export default {
 }
 .botonComprar{
   margin: 5px;
+  color:black;
+  background-color: #ff5e00;
 }
 
 .comparar-vuelos {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .vuelos-container {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 15px;
+  background-color: rgba(128, 123, 123, 0.7);
+  padding: 20px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+form {
+  margin-top: 20px;
 }
 
 .vuelos-container h1 {
   font-size: 36px;
-  margin-bottom: 30px;
+  margin-bottom: 20px; /* Ajusta el margen inferior del título */
+  margin-top: 0;
 }
+
 
 .lista-vuelos {
   list-style: none;
@@ -188,5 +202,10 @@ export default {
 
 .lista-vuelos li:last-child {
   border-bottom: none;
+}
+
+.vuelo-item {
+  color: #000;
+  font-weight: bold; 
 }
 </style>
