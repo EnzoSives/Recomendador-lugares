@@ -20,7 +20,7 @@
           placeholder="Password"
         >
         <p v-if="error" class="error">Has introducido mal el email o la contraseña.</p>
-        <input class="form-submit" type="submit" value="Login">
+        <button class="form-submit" type="submit">Enviar</button>
       </form>
       <p class="msg">¿No tienes cuenta?
         <router-link to="/register">Regístrate</router-link>
@@ -29,29 +29,26 @@
   </template>
   
   <script>
+  import { ref} from 'vue';
+import useAuth from '../composables/authUser';
 //   import auth from "@/logic/auth";
   export default {
     name: 'PagLogin',
-    data: () => ({
-      email: "",
-      password: "",
-      error: false
-    }),
-    // methods: {
-    //   async login() {
-    //     try {
-    //       await auth.login(this.email, this.password);
-    //       const user = {
-    //         email: this.email
-    //       };
-    //       auth.setUserLogged(user);
-    //       this.$router.push("/");
-    //     } catch (error) {
-    //       console.log(error);
-    //       this.error = true;
-    //     }
-    //   }
-    // }
+    setup() {
+      const { login } = useAuth();
+      const email = ref('');
+      const password = ref('');
+      
+    
+
+    const loginUser = async () => {
+      await login(email.value, password.value);
+    };
+    
+    
+    return { email, password, login: loginUser };
+  },
+  
   };
   </script>
   

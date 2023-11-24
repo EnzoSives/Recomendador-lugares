@@ -10,23 +10,27 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto me-0" v-if="isAuthenticated">
+      <ul class="navbar-nav ms-auto me-0" >
         <li class="nav-item">
-          <a class="nav-link" href="#"><router-link to="/">Home</router-link></a>
+          <a class="nav-link" href="#"><router-link to="/home">Home</router-link></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><router-link to="/viajes">Viajes</router-link></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if="isAuthenticated">
           <a class="nav-link" href="#"><router-link to="/ayuda">Lugares</router-link></a>
         </li>
         <li class="nav-item" >
           <a class="nav-link" href="#"><router-link to="/login">Ayuda</router-link></a>
         </li>
-          <li class="nav-item">
+        <li class="nav-item" >
+          <a class="nav-link" href="#"><router-link to="/login">Login</router-link></a>
+        </li>
+          <li class="nav-item" v-if="isAuthenticated">
               <a class="nav-link" href="javascript:void(0)" @click="handleClick">Logout</a>
             </li>
-      </ul>
+        </ul>
+  
     </div>
   </div>
 </nav>

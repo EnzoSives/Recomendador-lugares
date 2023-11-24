@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import axios from 'axios';
-import router from '../router/index';
+import router from '../router/Router';
 
 const user = ref(null);
 const token = ref('');
@@ -17,9 +17,8 @@ const login = async (email, password) => {
   token.value = response.data.access_token;
   localStorage.setItem('access-token', token.value);
   console.log(response.data);
-  if(token.value){
-    router.go();
-  }
+  router.push('/');
+  
 };
 
 const validateToken = async () => {
