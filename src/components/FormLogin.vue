@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <main class="form-signin">
-      <form action="">
+      <form @submit.prevent="login">
         <img
           class="mb-4"
           src="/docs/5.0/assets/brand/bootstrap-logo.svg"
@@ -47,42 +47,25 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+import useUser from '../composables/authUser';
+
+
 export default {
-  data() {
-    return {
-      email: "",
-      password: "",
+  setup() {
+    const { login } = useUser();
+    const email = ref('');
+    const password = ref('');
+
+    const loginUser = async () => {
+      await login(email.value, password.value);
     };
+
+  
+    return { email, password, login: loginUser };
   },
-  methods: {
-    async login() {
-      const url = "http://localhost:3000/auth/login";
-      await fetch(url, {
-        method: "POST",
-        mode: "cors",
-        body: JSON.stringify({
-          email: this.email,
-          password: this.password,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("La respuesta no fue exitosa");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          localStorage.setItem("token", data.access_token);
-          console.log(this.places);
-        })
-        .catch((error) => {
-          console.error(
-            "Error al obtener los datos de los continentes:",
-            error
-          );
-        });
-    },
-  },
+
+  
 };
 </script>
 

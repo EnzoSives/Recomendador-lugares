@@ -10,7 +10,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto me-0">
+      <ul class="navbar-nav ms-auto me-0" v-if="isAuthenticated">
         <li class="nav-item">
           <a class="nav-link" href="#"><router-link to="/">Home</router-link></a>
         </li>
@@ -20,9 +20,12 @@
         <li class="nav-item">
           <a class="nav-link" href="#"><router-link to="/ayuda">Lugares</router-link></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" >
           <a class="nav-link" href="#"><router-link to="/login">Ayuda</router-link></a>
         </li>
+          <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)" @click="handleClick">Logout</a>
+            </li>
       </ul>
     </div>
   </div>
@@ -31,16 +34,24 @@
 </template>
 
 <script>
+import useAuth from '../composables/authUser';
+
 export default {
   name: 'NavBar',
-  props: {
-    msg: String,
-    
-  }, 
-  methods:{
-
-  }
-}
+  methods: {
+    handleClick() {
+      const { logout } = useAuth();
+      logout();
+      this.$router.push('/');
+    },
+  },
+  setup() {
+    const { isAuthenticated } = useAuth();
+    return {
+      isAuthenticated,
+    };
+  },
+};
 </script>
 
 

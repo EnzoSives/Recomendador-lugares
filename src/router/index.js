@@ -7,7 +7,7 @@ import PagLogin from '@/views/PagLogin.vue'
 import NoticiaDetalles from '@/components/NoticiaDetalles.vue'
 import FormCargarDatos from '@/components/FormCargarDatos.vue'
 import FormCargarDatos2 from '@/components/FormCargarDatos2.vue'
-
+import '../axios'
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

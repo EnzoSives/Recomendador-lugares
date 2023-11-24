@@ -1,6 +1,6 @@
 <template>
   <div class="page-content">
-    <div class="form-v9-content" style="background-image: url('src/assets/logoavion.png')">
+    <div class="form-v9-content" style="background-image: url('src/assets/avion2.jpg')">
       <form class="form-detail" @submit.prevent="submitForm">
         <div class="router-links">
             <router-link to="/CargarLugar" class="custom-link-left"><h2>Agregar Ciudad</h2></router-link>
@@ -301,16 +301,22 @@ textarea:-moz-placeholder { /* Firefox 18- */
 
 .router-links {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 20px; /* Ajusta según sea necesario */
 }
 
-.custom-link {
+.custom-link-left {
   text-decoration: none;
   color: #fff; /* Cambia el color según tus preferencias */
 }
 
-.custom-link:hover {
+.custom-link-right {
+  text-decoration: none;
+  color: #fff; /* Cambia el color según tus preferencias */
+}
+
+.custom-link-left:hover,
+.custom-link-right:hover {
   text-decoration: underline;
 }
 </style>

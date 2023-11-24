@@ -1,10 +1,10 @@
 <template>
     <div class="page-content">
-      <div class="form-v9-content" style="background-image: url('src/assets/logoavion.png')">
+      <div class="form-v9-content" style="background-image: url('src/assets/avion2.jpg')">
         <form class="form-detail" @submit.prevent="submitForm">
             <div class="router-links">
-            <router-link to="/CargarLugar" class="custom-link-left"><h2>Agregar Ciudad</h2></router-link>
-            <router-link to="/CargarCiudad" class="custom-link-right"><h2>Agregar Lugar</h2></router-link>
+              <router-link to="/CargarCiudad" class="custom-link-left"><h2>Agregar Lugar</h2></router-link>
+            <router-link to="/CargarLugar" class="custom-link-right"><h2>Agregar Ciudad</h2></router-link>
         </div>
           <div class="form-row-total">
             <div class="form-row">
