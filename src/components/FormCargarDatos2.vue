@@ -249,7 +249,7 @@ body {
 }
 
 .form-v9-content {
-  background-image: url('../assets/avion3.jpg');
+  background-image: url('../assets/avion2.jpg');
   background-size: cover; /* Agregar esta línea para el efecto de cover */
   background-position: center;
   width: 1200px;
