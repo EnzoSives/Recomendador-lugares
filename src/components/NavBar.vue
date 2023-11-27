@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto me-0" >
         <li class="nav-item">
-          <a class="nav-link" href="#"><router-link to="/home">Home</router-link></a>
+          <a class="nav-link" href="#"><router-link to="/">Home</router-link></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><router-link to="/viajes">Viajes</router-link></a>
@@ -23,11 +23,11 @@
         <li class="nav-item" >
           <a class="nav-link" href="#"><router-link to="/login">Ayuda</router-link></a>
         </li>
-        <li class="nav-item" >
+        <li class="nav-item" v-if="!isAuthenticated">
           <a class="nav-link" href="#"><router-link to="/login">Login</router-link></a>
         </li>
           <li class="nav-item" v-if="isAuthenticated">
-              <a class="nav-link" href="javascript:void(0)" @click="handleClick">Logout</a>
+              <a class="nav-link" href="javascript:void(0)" @click="handleClick"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#ea580c" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2a9.985 9.985 0 0 1 8 4h-2.71a8 8 0 1 0 .001 12h2.71A9.985 9.985 0 0 1 12 22Zm7-6v-3h-8v-2h8V8l5 4l-5 4Z"/></svg></a>
             </li>
         </ul>
   
