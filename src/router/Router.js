@@ -7,6 +7,7 @@ import PagLogin from '@/views/PagLogin.vue'
 import NoticiaDetalles from '@/components/NoticiaDetalles.vue'
 import FormCargarDatos from '@/components/FormCargarDatos.vue'
 import FormCargarDatos2 from '@/components/FormCargarDatos2.vue'
+import BlogPage from '@/views/BlogPage.vue'
 import '../axios'
 
 const router = createRouter({
@@ -51,6 +52,11 @@ const router = createRouter({
       path: '/CargarLugar',
       name: 'CargarLugar',
       component: FormCargarDatos
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: BlogPage
     }
   ]
 })

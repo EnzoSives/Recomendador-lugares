@@ -91,7 +91,7 @@ export default {
     fetchNews() {
       const apiKey = '6563c217ad8244a2aba61dbf1767ea0d';
       const apiUrl = 'https://newsapi.org/v2/everything?' +
-                     'q=viajes&' +
+                     'q=vuelos&' +
                      'language=es&' +
                      'apiKey=' + apiKey;
 
