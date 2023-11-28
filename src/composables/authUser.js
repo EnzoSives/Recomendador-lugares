@@ -6,8 +6,8 @@ const user = ref(null);
 const token = ref('');
 const isAuthenticated = ref(false);  
 
-const register = async (email, password) => {
-  const response = await axios.post('/auth/register', { email, password });
+const register = async (username, email, password) => {
+  const response = await axios.post('/auth/register', { username, email, password });
   token.value = response.data.access_token;
   localStorage.setItem('access-token', token.value);
 };

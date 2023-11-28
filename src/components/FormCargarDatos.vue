@@ -1,6 +1,7 @@
 <template>
   <div class="page-content">
-    <div class="form-v9-content">
+    <div
+      class="form-v9-content">
       <form class="form-detail" @submit.prevent="submitForm">
         <div class="router-links">
           <router-link
@@ -87,9 +88,14 @@
       </div>
     </div>
   </div>
+  <div class="page-content" v-if="!isAuthenticated">
+    Pagina no disponible
+  </div>
 </template>
 
 <script>
+import useAuth from '@/composables/authUser';
+
 export default {
   data() {
     return {
@@ -102,6 +108,20 @@ export default {
         imagenes: [], 
       },
     };
+  },
+  setup() {
+    const { isAuthenticated } = useAuth();
+    return {
+      isAuthenticated,
+    };
+  },
+  async created() {
+    const { validateToken } = useAuth();
+    try {
+      await validateToken();
+    } catch (error) {
+      console.error('Error al obtener la información del usuario:', error);
+    }
   },
   mounted() {
     this.loadCitys();
