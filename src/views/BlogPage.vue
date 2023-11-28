@@ -1,22 +1,26 @@
 <template>
   <div>
-    <h2>Blog</h2>
-    <!-- Lista de publicaciones del blog -->
-    <ul>
-      <li v-for="post in posts" :key="post.id">
-        {{ post.posteo }} - {{ post.nombre }}
-      </li>
-    </ul>
-
-    <!-- Formulario para hacer consultas -->
-    <div>
-      <h3>Hacer una consulta</h3>
-      <form @submit.prevent="submitQuery">
-        <label for="query">Tu pregunta:</label>
-        <textarea v-model="query" id="query" required></textarea>
-        <button type="submit">Enviar Consulta</button>
+<!-- Formulario para hacer consultas -->
+<div class="query-form">
+  <form @submit.prevent="submitQuery" class="form">
+    <h3>Hacer una consulta</h3>
+        <label for="query" class="form-label">Tu pregunta:</label>
+        <textarea v-model="query" id="query" class="form-textarea" required></textarea>
+        <button type="submit" class="form-button">Enviar Consulta</button>
       </form>
     </div>
+
+    <h2>Posteos</h2>
+    <!-- Lista de publicaciones del blog -->
+    <div class="card-container">
+      <div v-for="post in posts" :key="post.id" class="card">
+        <div class="card-content">
+          <h4>Usuario: {{ post.nombre }}</h4>
+          <p>{{ post.posteo }}</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -99,8 +103,55 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+}
+
+.card-content {
+  text-align: left;
+}
+
+.query-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
   
-  <style scoped>
-  /* Agrega estilos según tus necesidades */
-  </style>
-  
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-label {
+  margin-bottom: 5px;
+}
+
+.form-textarea {
+  width: 50%;
+  height: 80px;
+  margin-bottom: 10px;
+  resize: vertical;
+}
+
+.form-button {
+  width: 50%;
+  background-color: #007BFF;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+</style>
