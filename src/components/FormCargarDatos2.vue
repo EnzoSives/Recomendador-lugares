@@ -8,7 +8,7 @@
             <h2 id="h2">Agregar Ciudad</h2>
           </router-link>
           <router-link  to="/CargarLugar" class="custom-link-left" :class="{ 'active-link': $route.path === '/CargarLugar' }">
-            <h2>Agregar Lugar</h2>
+            <h2 id="h22">Agregar Lugar</h2>
           </router-link>
         </div>
         <div class="form-row-total">
@@ -52,53 +52,19 @@
               required
             ></textarea>
           </div>
-        </div>
-          <div class="form-row-total">
-            <div class="form-row">
-              <label for="imagen1">Imagen 1:</label>
-              <input
-                type="file"
-                @change="handleImageChange(1)"
-                accept="image/*"
-                ref="imagen1"
-                class="form-control input-text "
-              />
-            </div>
-          
-        <div class="form-row">
-          <label for="imagen2">Imagen 2:</label>
-          <input
-            type="file"
-            @change="handleImageChange(2)"
-            accept="image/*"
-            ref="imagen2"
-            class="form-control input-text"
-          />
-        </div>
-      </div>
-        <div class="form-row-total">
-        <div class="form-row">
-          <label for="imagen3">Imagen 3:</label>
-          <input
-            type="file"
-            @change="handleImageChange(3)"
-            accept="image/*"
-            ref="imagen3"
-            class="form-control input-text"
-          />
-        </div>
-      
-        <div class="form-row">
-          <label for="imagen4">Imagen 4:</label>
-          <input
-            type="file"
-            @change="handleImageChange(4)"
-            accept="image/*"
-            ref="imagen4"
-            class="form-control input-text"
-          />
-        </div>
+        
+          <div class="form-row">
+            <label for="imagenes">Imágenes:</label>
+            <input
+              type="file"
+              @change="handleImageChange"
+              accept="image/*"
+              ref="imagenes"
+              class="form-control input-text"
+              multiple
+            />
           </div>
+        </div>
         <div class="form-row-last">
           <button type="submit" class="register">Crear Ciudad</button>
         </div>
@@ -125,7 +91,7 @@ export default {
         nombre: "",
         descripcion: "",
         id_pais: "",
-        imagenes: [], // Puedes almacenar las imágenes aquí
+        imagenes: [], 
       },
     };
   },
@@ -133,10 +99,16 @@ export default {
     this.loadPaices();
   },
   methods: {
-    handleImageChange(index) {
-      const input = this.$refs[`imagen${index}`];
+    handleImageChange() {
+      const input = this.$refs.imagenes;
       if (input && input.files && input.files.length > 0) {
-        this.formData.imagenes[index - 1] = input.files[0];
+        // Limpiar el array antes de agregar nuevas imágenes
+        this.formData.imagenes = [];
+
+        // Iterar sobre los archivos seleccionados y agregarlos al array
+        for (let i = 0; i < input.files.length; i++) {
+          this.formData.imagenes.push(input.files[i]);
+        }
       }
     },
 
@@ -171,13 +143,10 @@ export default {
     formData.append("descripcion", this.formData.descripcion);
     formData.append("id_pais", this.formData.id_pais);
 
-    // Añadir hasta cuatro imágenes con el nombre 'imagenes'
-    for (let i = 0; i < 4; i++) {
-      const imagen = this.formData.imagenes[i];
-      if (imagen) {
-        formData.append("imagenes", imagen);
-      }
-    }
+       // Añadir hasta cuatro imágenes con el nombre 'imagenes'
+       for (let i = 0; i < this.formData.imagenes.length; i++) {
+          formData.append("imagenes", this.formData.imagenes[i]);
+        }
 
     const response = await fetch("http://localhost:3000/ciudad/crear", {
       method: "POST",
@@ -195,7 +164,11 @@ export default {
     this.formData.nombre = "";
     this.formData.descripcion = "";
     this.formData.id_pais = "";
-    this.formData.imagenes = [];
+    this.formData.imagenes = []
+
+
+     // Limpiar campos de archivo (input de tipo file)
+     this.$refs.imagenes.value = null;
 
     // Limpiar campos de archivo (input de tipo file)
     for (let i = 1; i <= 4; i++) {
@@ -237,6 +210,8 @@ export default {
 /* Estilos específicos del componente, si es necesario */
 body {
   margin: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .page-content {
@@ -253,7 +228,7 @@ body {
   background-size: cover; /* Agregar esta línea para el efecto de cover */
   background-position: center;
   width: 1200px;
-  height: 780px;
+  height: 600px;
   border-radius: 15px;
   margin: 10px;
   margin-bottom: 40px;
@@ -277,7 +252,9 @@ body {
   margin-bottom: 55px;
   text-decoration: none;
 }
-
+.form-v9-content .form-detail #h22:hover{
+  color: #ff5e00;
+}
 .form-v9-content .form-detail #h2::after {
   background: #ff6600;
   width: 150px;
@@ -307,7 +284,7 @@ body {
 .form-v9-content .form-detail textarea {
   width: 100%;
   padding: 14.5px 0px 14.5px 30px;
-  border: 2px solid #ccc;
+  border: 2px solid #000000;
   border-radius: 27.5px;
   font-family: "Nunito", sans-serif;
   font-size: 16px;

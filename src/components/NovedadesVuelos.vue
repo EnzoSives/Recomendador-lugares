@@ -118,6 +118,7 @@ export default {
 
 .nov-card-list{
   padding: 10px;
+  
 }
   .flight-image {
     width: 100%;
@@ -128,8 +129,9 @@ export default {
   .card {
     height: 100%;
     border: none;
-    border-radius: 2px;
+    border-radius: 20px;
     box-shadow: none;
+    background-color: darkgrey;
   }
 
   .card:hover {

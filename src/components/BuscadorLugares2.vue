@@ -29,19 +29,14 @@
           <h2>{{ selectedResult.nombre }}</h2>
           <div class="images-container">
             <img
-              :src="selectedResult.url_image"
-              :key="imagen"
+              v-for="imageKey in [1, 2, 3, 4]"
+              :key="imageKey"
+              :src="selectedResult['url_image' + imageKey]"
               alt="Imagen del lugar"
             />
           </div>
           <ul>
             <h5>{{ selectedResult.descripcion }}</h5>
-            <!-- <li
-              v-for="atraccion in selectedResult.atracciones"
-              :key="atraccion"
-            >
-              {{ atraccion }}
-            </li> -->
           </ul>
           <button type="button" class="btn btn-danger" @click="closeModal">
             Cerrar
@@ -61,15 +56,22 @@ export default {
       searchResults: [],
       showModal: false,
       selectedResult: null,
+      endpoints: [
+        "http://localhost:3000/pais/all",
+        "http://localhost:3000/ciudad/all",
+        "http://localhost:3000/lugar/all",
+      ],
     };
   },
   mounted() {
     this.loadPlaces();
   },
   methods: {
-    async loadPlaces() {
-      const url = "http://localhost:3000/pais/all";
-      await fetch(url, {
+  async loadPlaces() {
+    this.places = [];
+
+    for (const endpoint of this.endpoints) {
+      await fetch(endpoint, {
         method: "GET",
         mode: "cors",
       })
@@ -80,24 +82,26 @@ export default {
           return response.json();
         })
         .then((data) => {
-          this.places = data; 
-          console.log(this.places);
+          // Merge data from all endpoints
+          this.places = [...this.places, ...data];
         })
         .catch((error) => {
-          console.error(
-            "Error al obtener los datos de los continentes:",
-            error
-          );
+          console.error("Error al obtener los datos:", error);
         });
-    },
-    search() {
-      this.searchResults = this.places.filter((place) =>
-        place.nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-      if (this.searchResults.length === 0) {
-        this.searchResults = [];
-      }
-    },
+    }
+  },
+  search() {
+  if (this.searchQuery === "") {
+    // Si el campo de búsqueda está vacío, selecciona un lugar aleatorio
+    const randomIndex = Math.floor(Math.random() * this.places.length);
+    this.searchResults = [this.places[randomIndex]];
+  } else {
+    // Si no, realiza la búsqueda como antes
+    this.searchResults = this.places.filter((place) =>
+      place.nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
+},
     openModal(result) {
       this.selectedResult = result;
       this.showModal = true;
