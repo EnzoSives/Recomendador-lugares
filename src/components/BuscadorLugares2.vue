@@ -7,6 +7,7 @@
         v-model="searchQuery"
         placeholder="Elegí el lugar que más te guste..."
       />
+      <span>O tambien buscar un lugar aleatorio solo seleccionando el boton de busqueda</span>
       <button type="submit" class="search-button">Buscar</button>
     </form>
   </div>
@@ -57,32 +58,10 @@
             <span class="visually-hidden">Siguiente</span>
           </button>
         </div>
-        <!-- Fin del carrusel -->
-
         <ul>
-          <h5>{{ selectedResult.descripcion }}</h5>
+          <li>{{ selectedResult.descripcion }}</li>
         </ul>
-        <ul>
-          <h5>{{ selectedResult.descripcion }}</h5>
-        </ul>
-        <ul>
-          <h5>{{ selectedResult.descripcion }}</h5>
-        </ul>
-        <ul>
-          <h5>{{ selectedResult.descripcion }}</h5>
-        </ul>
-        <ul>
-          <h5>{{ selectedResult.descripcion }}</h5>
-        </ul>
-        <ul>
-          <h5>{{ selectedResult.descripcion }}</h5>
-        </ul>
-        <ul>
-          <h5>{{ selectedResult.descripcion }}</h5>
-        </ul>
-        <ul>
-          <h5>{{ selectedResult.descripcion }}</h5>
-        </ul>
+   
       </div>
     </div>
   </div>
@@ -101,9 +80,9 @@ export default {
       selectedResult: null,
       // Array to store endpoint URLs
       endpoints: [
-        "http://localhost:3000/pais/all",
-        "http://localhost:3000/ciudad/all",
-        "http://localhost:3000/lugar/all",
+        "https://backend-paglugares.onrender.com/pais/all",
+        "https://backend-paglugares.onrender.com/ciudad/all",
+        "https://backend-paglugares.onrender.com/lugar/all",
       ],
     };
   },
@@ -165,14 +144,18 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 500px;
+  width: 450px;
   height: 300px;
   border: 2px solid #8e8787;
   border-radius: 10px;
   padding: 20px;
   background-color: rgba(128, 123, 123, 0.7);
 }
-
+span{
+  display: flex;
+  align-content: center;
+  text-align: center;
+}
 .transparent-form {
   width: 100%;
 }
@@ -251,8 +234,8 @@ export default {
   justify-content: space-between;
 }
 .modal-content img {
-  width: 150px;
-  height: 400px;
+  width: 250px;
+  height: 350px; 
   margin: 10px;
 }
 

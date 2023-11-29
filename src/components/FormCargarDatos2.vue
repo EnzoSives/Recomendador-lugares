@@ -148,7 +148,7 @@ export default {
     },
 
     async loadPaices() {
-      const url = "http://localhost:3000/pais/all";
+      const url = "https://backend-paglugares.onrender.com/pais/all";
       await fetch(url, {
         method: "GET",
         mode: "cors",
@@ -184,7 +184,7 @@ export default {
           formData.append("imagenes", this.formData.imagenes[i]);
         }
 
-    const response = await fetch("http://localhost:3000/ciudad/crear", {
+    const response = await fetch("https://backend-paglugares.onrender.com/ciudad/crear", {
       method: "POST",
       body: formData,
     });
@@ -202,14 +202,6 @@ export default {
     this.formData.id_pais = "";
     this.formData.imagenes = []
 
-
-     // Limpiar campos de archivo (input de tipo file)
-     this.$refs.imagenes.value = null;
-
-    // Limpiar campos de archivo (input de tipo file)
-    for (let i = 1; i <= 4; i++) {
-      this.$refs[`imagen${i}`].value = null;
-    }
 
     // Mostrar alerta de éxito
     this.alerta = {

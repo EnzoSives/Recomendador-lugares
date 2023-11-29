@@ -66,7 +66,6 @@
               type="file"
               @change="handleImageChange"
               accept="image/*"
-              ref="imagenes"
               class="form-control input-text"
               multiple
             />
@@ -141,21 +140,22 @@ export default {
     this.loadCitys();
   },
   methods: {
-    handleImageChange() {
-      const input = this.$refs.imagenes;
-      if (input && input.files && input.files.length > 0) {
-        // Limpiar el array antes de agregar nuevas imágenes
-        this.formData.imagenes = [];
+    handleImageChange(event) {
+    const input = event.target;
+    if (input && input.files && input.files.length > 0) {
+      // Limpiar el array antes de agregar nuevas imágenes
+      this.formData.imagenes = [];
 
-        // Iterar sobre los archivos seleccionados y agregarlos al array
-        for (let i = 0; i < input.files.length; i++) {
-          this.formData.imagenes.push(input.files[i]);
-        }
+      // Iterar sobre los archivos seleccionados y agregarlos al array
+      for (let i = 0; i < input.files.length; i++) {
+        this.formData.imagenes.push(input.files[i]);
       }
-    },
+
+    }
+  },
 
     async loadCitys() {
-      const url = "http://localhost:3000/ciudad/all";
+      const url = "https://backend-paglugares.onrender.com/ciudad/all";
       await fetch(url, {
         method: "GET",
         mode: "cors",
@@ -191,7 +191,7 @@ export default {
           formData.append("imagenes", this.formData.imagenes[i]);
         }
 
-        const response = await fetch("http://localhost:3000/lugar/crear", {
+        const response = await fetch("https://backend-paglugares.onrender.com/lugar/crear", {
           method: "POST",
           body: formData,
         });
@@ -211,9 +211,7 @@ export default {
         this.formData.id_ciudad = "";
         this.formData.imagenes = [];
 
-        // Limpiar campos de archivo (input de tipo file)
-        this.$refs.imagenes.value = null;
-
+    
         // Mostrar alerta de éxito
         this.alerta = {
           tipo: "success",

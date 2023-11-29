@@ -6,10 +6,7 @@
         <div class="card h-30 my-card">
           <img :src="place.url_image1" class="card-img-top flight-image" alt="Flight image">
           <div class="card-body">
-            <h5 class="card-title">{{ place.lugar }}</h5>
-            <p class="card-text">
-              {{ place.descripcion }}
-            </p>
+            <h5 class="card-title">{{ place.nombre }}</h5>
           </div>
           <EstrellasPuntuacionVue :rating="place.puntuacion" :maxStars="5"></EstrellasPuntuacionVue>
         </div>
@@ -29,6 +26,11 @@ export default {
   data(){
     return{
       places: [],
+      endpoints: [
+        "https://backend-paglugares.onrender.com/pais/all",
+        "https://backend-paglugares.onrender.com/ciudad/all",
+        "https://backend-paglugares.onrender.com/lugar/all",
+      ],
     }},
   
     computed: {
@@ -41,9 +43,13 @@ export default {
     this.loadPlaces()
   },
   methods:{
-    loadPlaces() {
-      const url = "http://localhost:3000/pais/all";
-      fetch(url, {
+    async loadPlaces() {
+    // Clear existing data
+    this.places = [];
+    
+    // Fetch data from all endpoints
+    for (const endpoint of this.endpoints) {
+      await fetch(endpoint, {
         method: "GET",
         mode: "cors",
       })
@@ -54,16 +60,14 @@ export default {
           return response.json();
         })
         .then((data) => {
-          this.places = data; 
-          console.log(this.places);
+          // Merge data from all endpoints
+          this.places = [...this.places, ...data];
         })
         .catch((error) => {
-          console.error(
-            "Error al obtener los datos de los continentes:",
-            error
-          );
+          console.error("Error al obtener los datos:", error);
         });
-    },
+    }
+  },
   }};
 </script>
 

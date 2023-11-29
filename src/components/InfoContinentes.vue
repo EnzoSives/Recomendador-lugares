@@ -16,7 +16,7 @@ export default {
     };
   },
   mounted() {
-    const url = 'http://localhost:3000/continente/all';
+    const url = 'https://backend-paglugares.onrender.com/continente/all';
     fetch(url, {
       method: 'GET',
       mode: 'cors',

@@ -30,6 +30,7 @@ export default {
   margin-bottom: 1rem;
   margin-left: 1rem;
   text-decoration:line-through;
+  
 }
 </style>
   

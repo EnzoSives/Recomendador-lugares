@@ -1,15 +1,15 @@
-<template>
+<template >
     <background-image class="background-image" :image-url="backgroundImageUrl"></background-image>
-    <div>
+    <div class="cont-form">
       <!-- Formulario para hacer consultas -->
-      <div class="query-card" style="max-width: 400px; margin: 10px; z-index: 1;">
+      <div class="query-card"  style="max-width: 600px; margin: 10px; z-index: 1;"  >
   <div class="card-body">
     <div class="query-form">
       <form @submit.prevent="submitQuery" class="form">
-        <h3 style="text-align: center;">Hacer una consulta</h3>
+        <h3 style="text-align: center;">Realizar un posteo</h3>
         
         <div class="form-group">
-          <label for="query" class="form-label">Tu pregunta:</label>
+          <label for="query" class="form-label">Que quieres contar:</label>
           <textarea v-model="query" id="query" class="form-control" style="height: 100px;" required></textarea>
         </div>
         
@@ -19,15 +19,16 @@
           <input  type="file" id="imagen" @change="handleImageChange" accept="image/*" class="form-control">
         </div>
         
-        <button type="submit" class="btn">Enviar Consulta</button>
+        <button type="submit" class="btn">Enviar Posteo</button>
       </form>
     </div>
   </div>
 </div>
+</div>
 
 
-
-      <h2>Posteos</h2>
+<div >
+  <titulo-pag title="Posteos" class="titulo" />
       <!-- Lista de publicaciones del blog -->
       <div class="card-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div v-for="post in posts" :key="post.id" class="card" style="width: 18rem; height: 18rem; margin: 5px;">
@@ -39,17 +40,20 @@
     </div>
   </div>
 </div>
-
     </div>
   </template>
   
   <script>
   import axios from 'axios';
-  import router from '@/router/Router';
   import BackgroundImage from '@/components/BackgroundImage.vue';
+  import useAuth from "@/composables/authUser";
+  import TituloPag from '@/components/TituloPag.vue';
+import router from '@/router/Router';
   export default {
     components:{
-        BackgroundImage
+        BackgroundImage,
+        TituloPag
+        
     },
     data() {
       return {
@@ -60,6 +64,20 @@
         userInfo: null, // Nuevo estado para almacenar la información del usuario
       };
     },
+    setup() {
+    const { isAuthenticated } = useAuth();
+    return {
+      isAuthenticated,
+    };
+  },
+  async created() {
+    const { validateToken } = useAuth();
+    try {
+      await validateToken();
+    } catch (error) {
+      console.error("Error al obtener la información del usuario:", error);
+    }
+  },
     mounted() {
       this.getPosts();
       this.getUserInfo(); // Llamada adicional para obtener información del usuario
@@ -67,7 +85,7 @@
     methods: {
       async getPosts() {
         try {
-          const response = await axios.get('http://localhost:3000/blogs/all'); // Reemplaza con tu endpoint real
+          const response = await axios.get('https://backend-paglugares.onrender.com/blogs/all'); // Reemplaza con tu endpoint real
           this.posts = response.data;
         } catch (error) {
           console.error('Error al obtener publicaciones:', error);
@@ -103,6 +121,11 @@
       async submitQuery() {
         const token = localStorage.getItem('access-token');
   
+        if (!token) {
+    // Si no hay un token, muestra una alerta y termina la función
+    alert('Debes iniciar sesión para realizar un posteo.');
+    return;
+  }
         if (token) {
           try {
             // Realiza la solicitud POST al backend con el parámetro 'posteo', 'imagen' y el token
@@ -112,7 +135,7 @@
             formData.append('userId', this.userInfo.id);
             formData.append('imagen', this.imagen);
   
-            const postResponse = await axios.post('http://localhost:3000/blogs/crear', formData, {
+            const postResponse = await axios.post('https://backend-paglugares.onrender.com/blogs/crear', formData, {
               headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
@@ -124,7 +147,8 @@
             // Después de enviar la consulta, puedes hacer algo como limpiar el formulario y el estado de la imagen
             this.query = '';
             this.imagen = null;
-            router.go()
+
+            router.go();
           } catch (error) {
             console.error('Error al enviar la consulta:', error);
           }
@@ -139,16 +163,18 @@
   
   <style scoped>
 
+
+
 .query-card {
   position: relative;
   display: flex;
+  height: 350px;
+  width: 800px; /* Ajusta el ancho según tus necesidades */
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 350px;
   border: 2px solid #8e8787;
   border-radius: 10px;
-  padding: 20px;
+  padding: 90px;
   background-color: rgba(128, 123, 123, 0.7);
 }
 
@@ -157,18 +183,24 @@
   top: 10;
   left: 0;
   width: 100%;
-  height: 50%;
+  height: 55%;
   z-index: 0; /* z-index menor para que esté detrás de la tarjeta */
+}
+
+.titulo{
+  position: relative;
+  top:30px;
+  z-index: 1;
 }
 
 
 .query-form {
-  width: 30;
+  width: 20;
   margin: auto;
 }
 
 .form {
-  max-width: 400px;
+  max-width: 300px;
   margin: auto;
 }
 
@@ -191,7 +223,7 @@
 }
 
 .form-control-file {
-  width: 100%;
+  width: 80%;
   padding: 8px;
   box-sizing: border-box;
 }
