@@ -130,7 +130,7 @@ export default {
   width: 20%;
   min-width: 350px;
   max-width: 100%;
-  background: rgba(19, 35, 47, 0.9);
+  background: rgba(232, 118, 5, 0.9);
   border-radius: 5px;
   padding: 40px;
   box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.3);
@@ -151,11 +151,11 @@ export default {
   color: white;
   &:focus {
     outline: 0;
-    border-color: #1ab188;
+    border-color: #de6c0a;
   }
 }
 .form-submit {
-  background: #1ab188;
+  background: #b1421a;
   border: none;
   color: white;
   margin-top: 3rem;
@@ -163,7 +163,7 @@ export default {
   cursor: pointer;
   transition: background 0.2s;
   &:hover {
-    background: #0b9185;
+    background: #909090;
   }
 }
 .error {

@@ -12,7 +12,7 @@
                 {{ novedad.description }}<br>
               </p>
             </div>
-            <button id="botonVerMas" @click="redirectToNews(novedad.url)" class="btn btn-primary">Leer más</button>
+            <button id="botonVerMas" @click="redirectToNews(novedad.url)" class="btn">Leer más</button>
           </div>
         
       </div>
@@ -132,6 +132,8 @@ export default {
     border-radius: 20px;
     box-shadow: none;
     background-color: darkgrey;
+    display: flex;
+    align-items: center;
   }
 
   .card:hover {
@@ -139,10 +141,11 @@ export default {
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   }
 
-  button {
+.btn {
     margin-top: 10px;
     padding: 5px 10px;
     cursor: pointer;
+    background-color: #ff6600;
   }
 
   #botonVerMas{

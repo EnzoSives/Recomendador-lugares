@@ -21,7 +21,7 @@
           <a class="nav-link" href="#"><router-link to="/ayuda">Lugares</router-link></a>
         </li>
         <li class="nav-item" >
-          <a class="nav-link" href="#"><router-link to="/login">Ayuda</router-link></a>
+          <a class="nav-link" href="#"><router-link to="/blog">Blog</router-link></a>
         </li>
         <li class="nav-item" v-if="!isAuthenticated">
           <a class="nav-link" href="#"><router-link to="/login">Login</router-link></a>

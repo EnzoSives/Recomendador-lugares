@@ -23,28 +23,71 @@
   </div>
 
   <transition name="modal" v-if="showModal">
-    <div class="modal-overlay" @click="closeModal">
-      <div class="modal-container">
-        <div class="modal-content">
-          <h2>{{ selectedResult.nombre }}</h2>
-          <div class="images-container">
-            <img
-              v-for="imageKey in [1, 2, 3, 4]"
-              :key="imageKey"
-              :src="selectedResult['url_image' + imageKey]"
-              alt="Imagen del lugar"
-            />
+  <div class="modal-overlay" @click.stop="closeModal">
+    <div class="modal-container">
+      
+      <div class="modal-content">
+        <h2>{{ selectedResult.nombre }}</h2>
+        <button @click="closeModal" class="close-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 432 432"><path fill="#ff5e00" d="M213.5 3q88.5 0 151 62.5T427 216t-62.5 150.5t-151 62.5t-151-62.5T0 216T62.5 65.5T213.5 3zM320 293l-77-77l77-77l-30-30l-77 77l-76-77l-30 30l76 77l-76 77l30 30l76-77l77 77z"/></svg>
+      </button>
+        
+        <!-- Carrusel de imágenes -->
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+          <div class="carousel-inner">
+            <div v-for="(imageKey, index) in [1, 2, 3, 4]" :key="imageKey" :class="{ 'carousel-item': true, 'active': index === 0 }">
+              <img
+                :src="selectedResult['url_image' + imageKey]"
+                class="d-block w-100"
+                alt="Imagen del lugar"
+              />
+            </div>
           </div>
-          <ul>
-            <h5>{{ selectedResult.descripcion }}</h5>
-          </ul>
-          <button type="button" class="btn btn-danger" @click="closeModal">
-            Cerrar
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" @click.stop>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" @click.stop>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
           </button>
         </div>
+        <!-- Fin del carrusel -->
+
+        <ul>
+          <h5>{{ selectedResult.descripcion }}</h5>
+        </ul>
+        <ul>
+          <h5>{{ selectedResult.descripcion }}</h5>
+        </ul>
+        <ul>
+          <h5>{{ selectedResult.descripcion }}</h5>
+        </ul>
+        <ul>
+          <h5>{{ selectedResult.descripcion }}</h5>
+        </ul>
+        <ul>
+          <h5>{{ selectedResult.descripcion }}</h5>
+        </ul>
+        <ul>
+          <h5>{{ selectedResult.descripcion }}</h5>
+        </ul>
+        <ul>
+          <h5>{{ selectedResult.descripcion }}</h5>
+        </ul>
+        <ul>
+          <h5>{{ selectedResult.descripcion }}</h5>
+        </ul>
       </div>
     </div>
-  </transition>
+  </div>
+</transition>
+
 </template>
   
   <script>
@@ -56,6 +99,7 @@ export default {
       searchResults: [],
       showModal: false,
       selectedResult: null,
+      // Array to store endpoint URLs
       endpoints: [
         "http://localhost:3000/pais/all",
         "http://localhost:3000/ciudad/all",
@@ -68,8 +112,10 @@ export default {
   },
   methods: {
   async loadPlaces() {
+    // Clear existing data
     this.places = [];
-
+    
+    // Fetch data from all endpoints
     for (const endpoint of this.endpoints) {
       await fetch(endpoint, {
         method: "GET",
@@ -198,16 +244,15 @@ export default {
   padding: 30px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
-  max-height: 100%;
+  overflow-y:scroll;
+  max-height: 90%;
   max-width: 90%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
 }
 .modal-content img {
-  width: 300px;
-  height: 300px;
+  width: 150px;
+  height: 400px;
   margin: 10px;
 }
 
@@ -216,7 +261,7 @@ export default {
 .modal-container p,
 .modal-container ul {
   margin: 0;
-  padding: 0;
+  padding: 20px;
 }
 
 ul {
@@ -234,5 +279,19 @@ ul {
   margin-bottom: 10px;
   padding: 10px;
 }
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.modal-content {
+  position: relative; /* Añade posición relativa para que el botón de cierre sea relativo a este contenedor */
+}
+
+
 </style>
   
