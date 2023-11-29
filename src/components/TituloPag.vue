@@ -20,14 +20,15 @@ export default {
 
 .page-title {
   font-family: 'Agdasima', sans-serif;
-  background: -webkit-linear-gradient(rgb(0, 0, 0), red);
+  background: -webkit-linear-gradient(rgb(255, 251, 1), red);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: rgb(255, 87, 8);
+  color: rgb(255, 24, 8);
   font-size: 4rem;
   font-weight: bold;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  margin-left: 1rem;
   text-decoration:line-through;
 }
 </style>

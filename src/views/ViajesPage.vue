@@ -28,7 +28,7 @@ export default {
     },
     data() {
       return {
-        backgroundImageUrl: 'https://images2.alphacoders.com/134/1341834.jpeg',
+        backgroundImageUrl: 'https://images2.alphacoders.com/103/103130.jpg',
       };
     }
 }
