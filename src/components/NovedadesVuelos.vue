@@ -1,4 +1,6 @@
 <template>
+  <!-- <button @click="saveDataToJson">Guardar Datos en JSON</button> -->
+
   <div class="nov-card-list">
     <div class="row">
       <div v-for="(novedad, index) in novedadesToShow" :key="index" class="col-md-3 mb-3">
@@ -81,7 +83,21 @@ export default {
   },
   methods: {
 
-    
+    saveDataToJson() {
+      // Guardar los datos en un archivo JSON
+      const jsonData = JSON.stringify(this.novedades, null, 2);
+      const blob = new Blob([jsonData], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      // Crear un enlace de descarga y hacer clic en él
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'novedades.json';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    },
 
     changePage(page) {
       if (page >= 1 && page <= this.totalPages) {
@@ -89,13 +105,13 @@ export default {
       }
     },
     fetchNews() {
-      const apiKey = '6563c217ad8244a2aba61dbf1767ea0d';
-      const apiUrl = 'https://newsapi.org/v2/everything?' +
-                     'q=viajes&' +
-                     'language=es&' +
-                     'apiKey=' + apiKey;
+      // const apiKey = '6563c217ad8244a2aba61dbf1767ea0d';
+      // const apiUrl = 'https://newsapi.org/v2/everything?' +
+      //                'q=viajes&' +
+      //                'language=es&' +
+      //                'apiKey=' + apiKey;
 
-      fetch(apiUrl)
+      fetch('novedades.json')
         .then(response => response.json())
         .then(data => {
           this.novedades = data.articles || [];
@@ -117,7 +133,7 @@ export default {
 <style scoped>
 
 .nov-card-list{
-  padding: 10px;
+  padding: 30px;
   
 }
   .flight-image {
@@ -129,7 +145,7 @@ export default {
   .card {
     height: 100%;
     border: none;
-    border-radius: 20px;
+    border-radius: 30px;
     box-shadow: none;
     background-color: darkgrey;
     display: flex;
@@ -141,28 +157,54 @@ export default {
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   }
 
-.btn {
-    margin-top: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: #ff6600;
-  }
-
   #botonVerMas{
+    background-color: #ff6600;
     width: 50%;
     margin-top: 10px;
-    padding: 5px 10px;
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 10px;
     cursor: pointer;
     font-size: 12px; /* Tamaño de fuente más pequeño */
   }
+  #botonVerMAs:hover{
+    color: #ff0000;
+  }
 
   .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 
-  .page-item {
-    margin: 0 5px;
-  }
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  background-color: #777879; /* Color de fondo del botón */
+  color: #ffffff; /* Color del texto del botón */
+  border: 1px solid #db5534; /* Borde del botón */
+  padding: 5px 10px; /* Espaciado interno del botón */
+  cursor: pointer;
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+.page-link:hover {
+  background-color: #ff5e00; /* Color de fondo al pasar el ratón sobre el botón */
+  border-color: #b95729;
+  color: #cc2e2e; /* Cambia el color del borde al pasar el ratón sobre el botón */
+}
+
+.disabled .page-link {
+  background-color: #bdc3c7; /* Color de fondo del botón deshabilitado */
+  color: #7f8c8d; /* Color del texto del botón deshabilitado */
+  border-color: #bdc3c7; /* Borde del botón deshabilitado */
+  cursor: not-allowed;
+}
+
+.active .page-link {
+  background-color: #cc2e2e; /* Color de fondo del botón activo */
+  color: #ffffff; /* Color del texto del botón activo */
+  border-color: #cc2e2e; /* Borde del botón activo */
+}
 </style>

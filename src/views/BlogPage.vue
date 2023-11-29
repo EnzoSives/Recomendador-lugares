@@ -16,10 +16,10 @@
         <!-- Nuevo campo de carga de imágenes -->
         <div class="form-group">
           <label for="imagen" class="form-label">Cargar Imagen:</label>
-          <input type="file" id="imagen" @change="handleImageChange" accept="image/*" class="form-control-file">
+          <input  type="file" id="imagen" @change="handleImageChange" accept="image/*" class="form-control">
         </div>
         
-        <button type="submit" class="btn btn-primary btn-block">Enviar Consulta</button>
+        <button type="submit" class="btn">Enviar Consulta</button>
       </form>
     </div>
   </div>
@@ -140,7 +140,16 @@
   <style scoped>
 
 .query-card {
-  position: relative; /* Necesario para que z-index funcione */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 350px;
+  border: 2px solid #8e8787;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgba(128, 123, 123, 0.7);
 }
 
 .background-image {
@@ -188,7 +197,7 @@
 }
 
 .btn {
-  background-color: #007bff;
+  background-color: #ff5e00;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -197,7 +206,7 @@
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: #ff4800;
 }
   .card-container {
     display: flex;

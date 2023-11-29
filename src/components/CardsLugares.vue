@@ -4,7 +4,7 @@
       <div v-for="(place, index) in sortedPlaces" :key="index" class="col-md-3 mb-3">
 
         <div class="card h-30 my-card">
-          <img :src="place.url_image" class="card-img-top flight-image" alt="Flight image">
+          <img :src="place.url_image1" class="card-img-top flight-image" alt="Flight image">
           <div class="card-body">
             <h5 class="card-title">{{ place.lugar }}</h5>
             <p class="card-text">

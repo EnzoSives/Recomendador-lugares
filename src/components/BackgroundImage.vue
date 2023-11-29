@@ -19,7 +19,7 @@
   <style>
   .background-image {
     position: relative;
-    height: 450px; 
+    height: 350px; 
     background-size: cover;
     background-position: center;
     display: flex;

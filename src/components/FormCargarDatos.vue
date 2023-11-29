@@ -1,7 +1,6 @@
 <template>
-  <div class="page-content">
-    <div
-      class="form-v9-content">
+  <div class="page-content" v-if="isAuthenticated">
+    <div class="form-v9-content">
       <form class="form-detail" @submit.prevent="submitForm">
         <div class="router-links">
           <router-link
@@ -60,7 +59,7 @@
               required
             ></textarea>
           </div>
-        
+
           <div class="form-row">
             <label for="imagenes">Imágenes:</label>
             <input
@@ -73,6 +72,22 @@
             />
           </div>
         </div>
+        <div class="form-row">
+          <label for="puntuacion" class="form-label">Puntuación:</label>
+          <input
+            v-model="formData.puntuacion"
+            type="range"
+            name="puntuacion"
+            id="puntuacion"
+            class="form-range orange-range"
+            min="1"
+            max="5"
+            required
+          />
+          <output for="puntuacion" class="form-label">{{
+            formData.puntuacion
+          }}</output>
+        </div>
         <div class="form-row-last">
           <button type="submit" class="register">Crear Lugar</button>
         </div>
@@ -83,18 +98,16 @@
     <div class="alert alert-dismissible" :class="'alert-' + alerta.tipo">
       <button type="button" class="btn-close" @click="alerta = null"></button>
       <div>
-        <strong>{{ alerta.tipo === 'success' ? 'Éxito' : 'Error' }}:</strong>
+        <strong>{{ alerta.tipo === "success" ? "Éxito" : "Error" }}:</strong>
         {{ alerta.mensaje }}
       </div>
     </div>
   </div>
-  <div class="page-content" v-if="!isAuthenticated">
-    Pagina no disponible
-  </div>
+  <div class="page-content" v-if="!isAuthenticated">Pagina no disponible</div>
 </template>
 
 <script>
-import useAuth from '@/composables/authUser';
+import useAuth from "@/composables/authUser";
 
 export default {
   data() {
@@ -105,7 +118,8 @@ export default {
         nombre: "",
         descripcion: "",
         id_ciudad: "",
-        imagenes: [], 
+        puntuacion: "",
+        imagenes: [],
       },
     };
   },
@@ -120,7 +134,7 @@ export default {
     try {
       await validateToken();
     } catch (error) {
-      console.error('Error al obtener la información del usuario:', error);
+      console.error("Error al obtener la información del usuario:", error);
     }
   },
   mounted() {
@@ -170,6 +184,7 @@ export default {
         formData.append("nombre", this.formData.nombre);
         formData.append("descripcion", this.formData.descripcion);
         formData.append("id_ciudad", this.formData.id_ciudad);
+        formData.append("puntuacion", this.formData.puntuacion);
 
         // Añadir hasta cuatro imágenes con el nombre 'imagenes'
         for (let i = 0; i < this.formData.imagenes.length; i++) {
@@ -182,7 +197,9 @@ export default {
         });
 
         if (!response.ok) {
-          throw new Error(`La solicitud falló con el código de estado ${response.status}`);
+          throw new Error(
+            `La solicitud falló con el código de estado ${response.status}`
+          );
         }
 
         const data = await response.json();
@@ -207,7 +224,6 @@ export default {
         setTimeout(() => {
           this.alerta = null;
         }, 2000);
-
       } catch (error) {
         console.error("Error al guardar los datos:", error);
 
@@ -235,19 +251,39 @@ body {
   overflow: hidden;
 }
 
+.orange-range::-webkit-slider-thumb {
+  background: #ff6600; /* Cambia esto según tu color naranja deseado */
+  border: 2px solid #fff; /* Bordes blancos alrededor de la bolita */
+  height: 21px; /* Altura de la bolita */
+  width: 20px; /* Ancho de la bolita */
+  border-radius: 50%; /* Forma circular */
+  -webkit-appearance: none; /* Desactiva la apariencia predeterminada de WebKit */
+  margin-top: -9px; /* Ajuste para centrar la bolita verticalmente */
+}
+
+/* Estilos para Firefox */
+.orange-range::-moz-range-thumb {
+  background: #ff6600; /* Cambia esto según tu color naranja deseado */
+  border: 2px solid #fff; /* Bordes blancos alrededor de la bolita */
+  height: 25px; /* Altura de la bolita */
+  width: 20px; /* Ancho de la bolita */
+  border-radius: 50%; /* Forma circular */
+  margin-top: -9px; /* Ajuste para centrar la bolita verticalmente */
+}
+
 .page-content {
   width: 100%;
 
   margin: 0 auto;
   background: #49515c;
- 
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .form-v9-content {
-  background-image: url('../assets/avion3.jpg');
+  background-image: url("../assets/avion3.jpg");
   background-size: cover; /* Agregar esta línea para el efecto de cover */
   background-position: center;
   width: 1200px;
@@ -276,8 +312,7 @@ body {
   text-decoration: none;
 }
 
-
-.form-v9-content .form-detail #h22:hover{
+.form-v9-content .form-detail #h22:hover {
   color: #ff5e00;
 }
 .form-v9-content .form-detail #h2::after {
@@ -305,6 +340,10 @@ body {
   text-align: center;
 }
 
+.input-text::placeholder {
+  color: #000000; /* Cambia esto según tu color negro deseado */
+}
+
 .form-v9-content .form-detail .input-text,
 .form-v9-content .form-detail textarea {
   width: 100%;
@@ -316,6 +355,7 @@ body {
   font-weight: 700;
   background: rgba(255, 255, 255, 0.2);
   outline: none;
+  color: #000000;
 }
 
 .form-v9-content .form-detail .input-text:focus,
@@ -376,7 +416,6 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
   color: #ff5e00;
 }
-
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
@@ -439,12 +478,11 @@ textarea:-moz-placeholder {
 }
 
 .router-links .active-link {
-  color: #ff6600;/* Cambia el color a tu preferencia */
+  color: #ff6600; /* Cambia el color a tu preferencia */
 }
 
 /* Estilo para los botones dentro de los elementos input de tipo file */
 input[type="file"]::-webkit-file-upload-button {
-  
   border: 2px solid #151515;
   border-radius: 10px;
   background-color: #ff5e00;
@@ -463,5 +501,4 @@ input[type="file"]::-ms-browse {
 }
 
 /* Agregar estilos adicionales según sea necesario */
-
 </style>

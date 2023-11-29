@@ -65,6 +65,22 @@
             />
           </div>
         </div>
+        <div class="form-row">
+          <label for="puntuacion" class="form-label">Puntuación:</label>
+          <input
+            v-model="formData.puntuacion"
+            type="range"
+            name="puntuacion"
+            id="puntuacion"
+            class="form-range orange-range"
+            min="1"
+            max="5"
+            required
+          />
+          <output for="puntuacion" class="form-label">{{
+            formData.puntuacion
+          }}</output>
+        </div>
         <div class="form-row-last">
           <button type="submit" class="register">Crear Ciudad</button>
         </div>
@@ -79,7 +95,7 @@
         </div>
       </div>
   </div>
-  <div class="page-content" v-if="isAuthenticated">
+  <div class="page-content" v-if="!isAuthenticated">
   Pagina no disponible</div>
 </template>
 
@@ -95,6 +111,7 @@ export default {
         nombre: "",
         descripcion: "",
         id_pais: "",
+        puntuacion:"",
         imagenes: [], 
       },
     };
@@ -160,6 +177,7 @@ export default {
     formData.append("nombre", this.formData.nombre);
     formData.append("descripcion", this.formData.descripcion);
     formData.append("id_pais", this.formData.id_pais);
+    formData.append("puntuacion", this.formData.puntuacion);
 
        // Añadir hasta cuatro imágenes con el nombre 'imagenes'
        for (let i = 0; i < this.formData.imagenes.length; i++) {
@@ -251,7 +269,7 @@ body {
   margin: 10px;
   margin-bottom: 40px;
   font-family: "Nunito", sans-serif;
-  color: #fff;
+  color: #000000;
   font-weight: 700;
   font-size: 16px;
   position: relative;
@@ -340,6 +358,7 @@ body {
   font-weight: 700;
   background: rgba(255, 255, 255, 0.2);
   outline: none;
+  color: #000000;
 }
 
 .form-v9-content .form-detail .input-file:focus {
@@ -400,10 +419,37 @@ textarea:-moz-placeholder {
   z-index: 1000; /* Asegura que esté en la parte superior de otros elementos */
 }
 
+.orange-range {
+  /* background: linear-gradient(to right, #ff6600, #ff6600);  */
+  color: #ff6600;/* Cambia esto según tu color naranja deseado */
+}
+
+.input-text::placeholder {
+  color: #000000; /* Cambia esto según tu color negro deseado */
+}
+.orange-range::-webkit-slider-thumb {
+  background: #ff6600; /* Cambia esto según tu color naranja deseado */
+  border: 2px solid #fff; /* Bordes blancos alrededor de la bolita */
+  height: 21px; /* Altura de la bolita */
+  width: 20px; /* Ancho de la bolita */
+  border-radius: 50%; /* Forma circular */
+  -webkit-appearance: none; /* Desactiva la apariencia predeterminada de WebKit */
+  margin-top: -9px; /* Ajuste para centrar la bolita verticalmente */
+}
+
+/* Estilos para Firefox */
+.orange-range::-moz-range-thumb {
+  background: #ff6600; /* Cambia esto según tu color naranja deseado */
+  border: 2px solid #fff; /* Bordes blancos alrededor de la bolita */
+  height: 25px; /* Altura de la bolita */
+  width: 20px; /* Ancho de la bolita */
+  border-radius: 50%; /* Forma circular */
+  margin-top: -9px; /* Ajuste para centrar la bolita verticalmente */
+}
+
 .top-0 {
   top: 0;
 }
-
 .start-50 {
   left: 50%;
 }

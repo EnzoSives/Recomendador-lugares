@@ -71,7 +71,8 @@ export default defineComponent({
 
 img {
   width: 350px; 
-  height: 500px;
+  height: 400px;
+  border-radius: 20px;
 }
 .carousel__slide {
   padding: 100px;
